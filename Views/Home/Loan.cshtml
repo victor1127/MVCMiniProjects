@@ -1,0 +1,93 @@
+﻿@model MVCMiniProjects.Models.Loan
+
+
+
+<div class="row pt-5 gy-3">
+    <div class="col-md-4 p-3">
+        <form asp-controller="Home" asp-action="Loan" method="post">
+            <div class="row align-items-center">
+                <div class="col-md-4">
+                    <label class="form-label" asp-for="LoanAmount">Loan Amount</label>
+                </div>
+                <div class="col">
+                    <input class="form-control" id="loanAmount" asp-for="LoanAmount" value="@Model.LoanAmount" placeholder="$0.00" type="number" min="100" required>
+                </div>
+            </div>
+
+            <div class="row align-items-center mt-2">
+                <div class="col-md-4">
+                    <label class="control-label" asp-for="Term">Term (Months)</label>
+                </div>
+                <div class="col">
+                    <input class="form-control" id="term" asp-for="Term" value="@Model.Term" placeholder="0" type="number" min="1" required>
+                </div>
+            </div>
+
+            <div class="row align-items-center mt-2">
+                <div class="col-md-4">
+                    <label class="control-label" asp-for="InterestRate">Interest Rate</label>
+                </div>
+                <div class="col">
+                    <input class="form-control" id="rate" asp-for="InterestRate" value="@Model.InterestRate" placeholder="0%" type="number" min="1" required>
+                </div>
+            </div>
+
+            <div class="row mt-2 pt-2">
+                <div class="col-12 d-flex justify-content-end align-items-end">
+                    <button class="btn btn-success" type="submit" onclick="MakeVisible()">Calculate</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-md-8 bg-pimary border border-1 border-dark p-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="fw-bold">Your Monthly Payments</h2>
+            </div>
+
+            <div class="col-12 text-center pt-5">
+                <h2 class="fw-bold" id="monthlyPayment"></h2>
+            </div>
+
+            <div class="col-12 d-flex justify-content-evenly pt-5">
+                <div>
+                    <h6 class="invisible" id="totalPrincipal">Total Principal</h6>
+                    <h6 class="invisible" id="totalInterest">Total Interest</h6>
+                    <h6 class="invisible" id="totalCost">Total Cost</h6>
+                </div>
+
+                <div>
+                    <h6 id="@Model.TotalPrincipal"></h6>
+                    <h6 id="@Model.TotalInterest"></h6>
+                    <h6 id="@Model.TotalCost"></h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 p-3 border">
+        <div class="bg-light rounded">
+            <table class="table table-responsive table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Month</th>
+                        <th scope="col">Payment</th>
+                        <th scope="col">Principal</th>
+                        <th scope="col">Interest</th>
+                        <th scope="col">Total Interest</th>
+                        <th scope="col">Balance</th>
+                    </tr>
+                </thead>
+                <tbody id="loanTable">
+                    <!--
+                        <tr>
+                            <td></td>
+                        </tr>
+                    -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</div>

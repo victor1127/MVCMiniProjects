@@ -69,14 +69,16 @@ namespace MVCMiniProjects.Controllers
         [HttpGet]
         public IActionResult Loan()
         {
-            return View();
+            Loan loan = new();
+            return View(loan);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Loan2()
+        public IActionResult Loan2222222()
         {
-            return View();
+            Loan loan = new();
+            return View(loan);
         }
 
 
