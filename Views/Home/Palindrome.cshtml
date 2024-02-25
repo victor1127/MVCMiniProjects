@@ -1,0 +1,50 @@
+﻿@model MVCMiniProjects.Models.Palindrome
+
+<div class="row pt-4 row-cols-1 row-cols-md-2">
+    <div class="col border-end border-1">
+        <h4 class="display-5 fw-bold">Palindrome: String Reversal.</h4>
+        <p>
+            Here we reverse a string and test it as a palindrome!
+            Coded using C# and the MVC pattern. Write a program that
+            displays the reversal of an input string of characters.
+            Display the reversal in <span class="text-success">Green</span>
+            and state whether it is a Palindrome or not.
+        </p>
+        <p>
+            <strong>
+                * Palindrome - a word, phrase, or sequence that reads
+                the same backward as forwar.
+            </strong>
+        </p>
+        <div>
+            <h6>Instructions</h6>
+            <hr />
+            <p>
+                Enter a word or sentence. Press the button and the input will
+                be evaluated on whether it is a palindrome or not. The resulting
+                reversal of the string will also appear.
+            </p>
+        </div>
+    </div>
+    <div class="col">
+        <div>
+            <form asp-controller="Home" asp-action="Palindrome" method="post">
+                <label asp-for="UserInput" class="form-label">Enter a string</label>
+                <input asp-for="UserInput" class="form-control" value="@Model.UserInput" placeholder="String" required />
+                <div class="d-flex justify-content-end mt-2">
+                    <button class="btn btn-dark text-light" type="submit">Palindrome test</button>
+                </div>
+            </form>
+        </div>
+        @{
+            var alert = Model.IsPalindrom ? "alert alert-success" : "alert alert-danger";
+        }
+        <div class="@alert mt-3" role="alert">
+            <label>
+                <strong>@Model.UserInput</strong> @Model.Message
+            </label>
+        </div>
+
+
+    </div>
+</div>

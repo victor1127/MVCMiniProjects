@@ -1,0 +1,78 @@
+﻿@model MVCMiniProjects.Models.FizzBuzz
+
+<div class="row row-cols-1 row-cols-md-2 pt-4">
+    <div class="col border-end">
+        <h4 class="display-5 fw-bold">Fizz Buzz: A coding project</h4>
+        <p>
+            When it counts you Fizz Buzz. A javascript coding exercise using loops.
+            Write a program that prints the numbers from 1 to 100 and for multiples of
+            '3' display <strong>"Fizz"</strong> instead of the number and for the multiples
+            of '5' display <strong>"Buzz"</strong>. If a multiple of both display <strong>"FizzBuzz"</strong>.
+        </p>
+        <div>
+            <h6>Instructions</h6>
+            <hr />
+            <p>Enter a fizz and a buzz value. Press the button and the values will appear.</p>
+        </div>
+    </div>
+
+    <div class="col">
+        <h6 class="lead">Enter values</h6>
+        <form class="row" asp-controller="Home" asp-action="FizzBuzz" method="post">
+            <div class="col">
+                <input asp-for="StartValue" value="@Model.StartValue" id="startNumber" class="form-control" type="number" min="1" max="100" placeholder="Start number" required>
+            </div>
+
+            <div class="col">
+                <input asp-for="EndValue" value="@Model.EndValue" id="endNumber" class="form-control" type="number" min="1" max="100" placeholder="End number" required>
+            </div>
+
+            <div class="col-12 pt-3 d-flex justify-content-md-end">
+                <button class="btn btn-dark text-light" type="submit">Submit</button>
+            </div>
+        </form>
+
+        @{
+            if (Model.FizzBuzzValues != null)
+            {
+                <div class="row pt-5">
+                    <div class="col">
+                        <table class="table table-responsive table-striped">
+                            <tbody>
+                                @{
+                                    int skip = 0; 
+                                    for (var i = 1; i <= Math.Ceiling(Model.FizzBuzzValues.Length / 6.0); i++)
+                                    {
+                                        <tr>
+                                            @{
+                                                foreach (var str in Model.FizzBuzzValues.Skip(skip).Take(6))
+                                                {
+                                                    string color = string.Empty;
+                                                    if (str == "Fizz") color = "text-success";
+                                                    else if (str == "Buzz") color = "text-primary";
+                                                    else if (str == "FizzBuzz") color = "text-danger";
+                                                    <td class="@color">@str</td>
+                                                }
+                                            }
+                                        </tr>
+                                        skip += 6;
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<template id="InnerTableTemplate">
+    <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+</template>
