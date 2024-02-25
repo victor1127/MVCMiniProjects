@@ -40,18 +40,14 @@
                         <table class="table table-responsive table-striped">
                             <tbody>
                                 @{
-                                    int skip = 0; 
-                                    for (var i = 1; i <= Math.Ceiling(Model.FizzBuzzValues.Length / 6.0); i++)
+                                    int skip = 0;
+                                    for (var i = 0; i < Model.FizzBuzzValues.Length; i += 6)
                                     {
                                         <tr>
                                             @{
-                                                foreach (var str in Model.FizzBuzzValues.Skip(skip).Take(6))
+                                                foreach(var str in Model.FizzBuzzValues.Skip(skip).Take(6))
                                                 {
-                                                    string color = string.Empty;
-                                                    if (str == "Fizz") color = "text-success";
-                                                    else if (str == "Buzz") color = "text-primary";
-                                                    else if (str == "FizzBuzz") color = "text-danger";
-                                                    <td class="@color">@str</td>
+                                                    <td class="@Model.FizzBuzzValues[i]">@str</td>
                                                 }
                                             }
                                         </tr>
@@ -66,13 +62,3 @@
         }
     </div>
 </div>
-
-<template id="InnerTableTemplate">
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-</template>

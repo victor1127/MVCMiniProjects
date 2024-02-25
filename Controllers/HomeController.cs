@@ -66,7 +66,21 @@ namespace MVCMiniProjects.Controllers
             return View(fizzBuzz);
         }
 
-        
+        [HttpGet]
+        public IActionResult Loan()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Loan2()
+        {
+            return View();
+        }
+
+
+
 
 
 

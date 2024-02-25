@@ -20,3 +20,15 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.FizzBuzz{
+    color: darkred;
+}
+
+.Fizz {
+    color: green;
+}
+
+.Buzz {
+    color: blue;
+}
