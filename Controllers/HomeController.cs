@@ -75,9 +75,9 @@ namespace MVCMiniProjects.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Loan2222222()
+        public IActionResult Loan([Bind("LoanAmount", "Term", "InterestRate")] Loan loan)
         {
-            Loan loan = new();
+            loan = LoanService.CalculateLoan(loan);
             return View(loan);
         }
 

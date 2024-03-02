@@ -47,20 +47,23 @@
             </div>
 
             <div class="col-12 text-center pt-5">
-                <h2 class="fw-bold" id="monthlyPayment"></h2>
+                @{
+                    var monthlyPayment = (Model.PaymentDetails.Count > 0) ? Model.PaymentDetails[0].Payment : 0;
+                    <h2 class="fw-bold">@($"{monthlyPayment:c}")</h2>
+                }
             </div>
 
             <div class="col-12 d-flex justify-content-evenly pt-5">
                 <div>
-                    <h6 class="invisible" id="totalPrincipal">Total Principal</h6>
-                    <h6 class="invisible" id="totalInterest">Total Interest</h6>
-                    <h6 class="invisible" id="totalCost">Total Cost</h6>
+                    <h6 class="" id="totalPrincipal"> @Html.DisplayNameFor(model => model.TotalPrincipal)</h6>
+                    <h6 class="" id="totalInterest">@Html.DisplayNameFor(model => model.TotalInterest)</h6>
+                    <h6 class="" id="totalCost">@Html.DisplayNameFor(model => model.TotalCost)</h6>
                 </div>
 
                 <div>
-                    <h6 id="@Model.TotalPrincipal"></h6>
-                    <h6 id="@Model.TotalInterest"></h6>
-                    <h6 id="@Model.TotalCost"></h6>
+                    <h6>@($"{Model.TotalPrincipal:c}")</h6>
+                    <h6>@($"{Model.TotalInterest:c}")</h6>
+                    <h6>@($"{Model.TotalCost:c}")</h6>
                 </div>
             </div>
         </div>
@@ -80,14 +83,21 @@
                     </tr>
                 </thead>
                 <tbody id="loanTable">
-                    <!--
-                        <tr>
-                            <td></td>
-                        </tr>
-                    -->
+                    @{
+                        foreach(var loan in Model.PaymentDetails)
+                        {
+                            <tr>
+                                <td>@loan.Month</td>
+                                <td>@($"{loan.Payment:c}")</td>
+                                <td>@($"{loan.Principal:c}")</td>
+                                <td>@($"{loan.Interest:c}")</td>
+                                <td>@($"{loan.TotalInterest:c}")</td>
+                                <td>@($"{loan.Balance:c}")</td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
         </div>
     </div>
-</div>
 </div>
